@@ -1,4 +1,4 @@
-angular.module('wallpaperz', ['ngRoute', 'wallgigService', 'gallery', 'favouriteDirective', 'thumbnailsDirective'])
+angular.module('wallpaperz', ['ngRoute', 'wallgigService', 'gallery', 'favouriteDirective', 'headerDirective', 'thumbnailsDirective'])
 
 .controller('wallpaperzCtrl', ['$scope', function($scope) {
     $scope.activePic = undefined;
