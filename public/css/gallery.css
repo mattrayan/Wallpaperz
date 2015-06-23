@@ -1,3 +1,29 @@
-img {
+.thumbnail-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.thumbnail-image {
+	height: 188px;
+	width: 250px;
+	border: 1px solid #000000;
 	cursor: pointer;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.activeItem {
+	border: 1px solid #FFFFFF;
+}
+
+.activeStar {
+	display: block;
+}
+
+favourite {
+	display: none;
 }
