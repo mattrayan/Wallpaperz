@@ -6,10 +6,11 @@ angular.module('favouriteDirective', [])
 		scope: {
 			id: '@'
 		},
-		controller: ['$scope', function($scope) {
-			$scope.toggleFavourite = function(event) {
-				console.log("Hello");
-			};
+		controller: ['$scope', 'favouritesAPI', function($scope, favouritesAPI) {
+			$scope.inFavourites = false;
+			if (favouritesAPI.findWallpaper($scope.id).length !== 0) {
+				$scope.inFavourites = true;
+			}
 		}]
 	};
 });

@@ -6,9 +6,9 @@
 	</div>
 
 	<div class="right">
-		<favourite></favourite>
+		<favourite ng-click="toggleFavourites()" id="{{id}}"></favourite>
 		
-		<div class="date">Created {{image.wallpaper.created_at | date:'medium'}}</div>
+		<div class="date">Created:<br/>{{image.wallpaper.created_at | date:'medium'}}</div>
 		<div class="tags-section">
 			<span class="tags-title">Tags:</span>
 			<div class="tags" ng-repeat="tag in image.wallpaper.tags">{{tag.name}}</div>

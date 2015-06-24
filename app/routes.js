@@ -1,7 +1,7 @@
-var ShoppingItem = require('./models/shoppingItem');
+var FavouriteItem = require('./models/favouriteItem');
 
 var getAllItems = function(res) {
-	ShoppingItem.find(function(err, items) {
+	FavouriteItem.find(function(err, items) {
         if (err) {
     	    res.send(err);
 	    } else {
@@ -12,15 +12,14 @@ var getAllItems = function(res) {
 
 // Define and export all Express REST api routes
 module.exports = function(app) {
-	app.get('/api/items', function(req, res) {  // Return all shopping items
+	app.get('/api/favourites', function(req, res) {  // Return all favourites
         getAllItems(res);
     });
 
-    app.post('/api/items', function(req, res) {  // Save a shopping item
-        // Create shopping item object and then return all
-        ShoppingItem.create({
-            text: req.body.text,
-            done: false
+    app.post('/api/favourites', function(req, res) {  // Save to favourites
+        FavouriteItem.create({
+            id: req.body.id,
+            url: req.body.url
         }, function(err, item) {
             if (err) {
                 res.send(err);
@@ -31,10 +30,9 @@ module.exports = function(app) {
 
      });
 
-    app.delete('/api/items/:item_id', function(req, res) {  // Delete a shopping item
-	    // Delete a shopping item and return all
-        ShoppingItem.remove({
-            _id : req.params.item_id
+    app.delete('/api/favourites/:item_id', function(req, res) {  // Delete from favourites
+        FavouriteItem.remove({
+            id : req.params.item_id
         }, function(err, item) {
             if (err) {
                 res.send(err);

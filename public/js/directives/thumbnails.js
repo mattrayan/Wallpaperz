@@ -6,12 +6,15 @@ angular.module('thumbnailsDirective', [])
 		scope: {
 			context: '@'
 		},
-		controller: ['$scope', 'wallgigAPI', function($scope, wallgigAPI) {
+		controller: ['$scope', 'favouritesAPI', 'wallgigAPI', function($scope, favouritesAPI, wallgigAPI) {
 			if ($scope.context === "all") {
 				$scope.wallpapers = wallgigAPI.wallpapers;
 				wallgigAPI.fetchWallpapers();
 			} else if ($scope.context === "search") {
 				$scope.wallpapers = wallgigAPI.searchResults;
+			} else if ($scope.context === "favourites") {
+				$scope.wallpapers = favouritesAPI.favourites;
+				favouritesAPI.getFavourites();
 			}
 
 			var getActiveThumb = function(event) {
@@ -24,6 +27,10 @@ angular.module('thumbnailsDirective', [])
 				}
 
 				return activeThumb;
+			};
+
+			var toggleFavourites = function(id, url) {
+				favouritesAPI.toggleFavourite(id, url);
 			};
 
 			$scope.addActiveControls = function(event) {
@@ -39,9 +46,8 @@ angular.module('thumbnailsDirective', [])
 			};
 
 			$scope.clickWallpaper = function(event) {
-				console.log(event);
 				if (event.target.classList[0] === "favourite") {
-					console.log(event.target.parentElement.parentElement.attributes['data-id'].nodeValue);
+					toggleFavourites(event.target.parentElement.parentElement.attributes['data-id'].nodeValue, event.target.parentElement.parentElement.attributes['data-url'].nodeValue);
 				} else if (event.target.classList[0] === "ng-isolate-scope") {
 					$scope.$parent.$parent.go('/wallpaper/' + event.target.parentElement.attributes['data-id'].nodeValue);
 				} else {
