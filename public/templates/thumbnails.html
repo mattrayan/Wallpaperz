@@ -1,5 +1,5 @@
 <div class="thumbnail-container text-center">
-	<div class="thumbnail-image" style="background-image: url({{wallpaper.image.thumbnail.url}});" ng-repeat="wallpaper in wallpapers" ng-mouseover="addActiveControls($event)" ng-mouseleave="removeActiveControls($event)">
-		<favourite ng-click="toggleFavourite($event)"></favourite>
+	<div class="thumbnail-image" data-id="{{wallpaper.id}}" style="background-image: url({{wallpaper.image.thumbnail.url}});" ng-repeat="wallpaper in wallpapers" ng-mouseover="addActiveControls($event)" ng-mouseleave="removeActiveControls($event)" ng-click="clickWallpaper($event)">
+		<favourite id="{{wallpaper.id}}"></favourite>
 	</div>
 </div>

@@ -1,0 +1,17 @@
+<header></header>
+
+<div class="image-content">
+	<div class="left">
+		<img src="{{image.wallpaper.image.original.url}}" />
+	</div>
+
+	<div class="right">
+		<favourite></favourite>
+		
+		<div class="date">Created {{image.wallpaper.created_at | date:'medium'}}</div>
+		<div class="tags-section">
+			<span class="tags-title">Tags:</span>
+			<div class="tags" ng-repeat="tag in image.wallpaper.tags">{{tag.name}}</div>
+		</div>	
+	</div>
+</div>

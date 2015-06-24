@@ -1,1 +1,18 @@
-<div class="header-bar"></div>
+<div class="header-bar">
+	<div class="logo" ng-click="goHome()">
+		<div class="logo-spacer"></div>
+		<div class="logo-title">Wallpaperz</div>
+	</div>
+
+	<div class="right-menu">
+		<div class="controls">
+			<span class="link" ng-click="goHome()"><i class="fa fa-home"></i>&nbsp;Home</span>
+			<span class="link"><i class="fa fa-star"></i>&nbsp;Favourites</span>
+		</div>
+		<div class="search">
+			<form ng-submit="search()">
+				<i class="fa fa-search"></i><input type="text" placeholder="Search" ng-model="searchForm.query"></input>
+			</form>
+		</div>
+	</div>
+</div>
