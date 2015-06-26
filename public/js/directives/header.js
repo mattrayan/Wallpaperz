@@ -5,7 +5,8 @@ angular.module('headerDirective', [])
 		templateUrl: './templates/header.html',
 		controller: ['$scope', 'wallgigAPI', function($scope, wallgigAPI) {
 			$scope.search = function() {
-				wallgigAPI.searchWallpapers($scope.searchForm.query);
+				wallgigAPI.searchWallpapers($scope.searchForm.query, true);
+				$scope.page = 1;
 				$scope.go('/search');
 			};
 

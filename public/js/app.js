@@ -3,6 +3,8 @@ angular.module('wallpaperz', ['ngRoute', 'favouritesService', 'wallgigService', 
 .controller('wallpaperzCtrl', ['$scope', '$location', function($scope, $location) {
     $scope.searchForm = {};
 
+    $scope.page = 1;
+
     $scope.go = function(path) {
         $location.path(path);
     };
