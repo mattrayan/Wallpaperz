@@ -1,4 +1,4 @@
-angular.module('wallpaperz', ['ngRoute', 'favouritesService', 'wallgigService', 'wallpaper', 'favouriteDirective', 'headerDirective', 'thumbnailsDirective'])
+angular.module('wallpaperz', ['ngRoute', 'favouritesService', 'wallgigService', 'favourites', 'wallpaper', 'favouriteDirective', 'headerDirective', 'thumbnailsDirective'])
 
 .controller('wallpaperzCtrl', ['$scope', '$location', function($scope, $location) {
     $scope.searchForm = {};
@@ -23,6 +23,7 @@ angular.module('wallpaperz', ['ngRoute', 'favouritesService', 'wallgigService', 
     });
 
     $routeProvider.when('/favourites', {
-        templateUrl: './templates/favourites.html'
+        templateUrl: './templates/favourites.html',
+        controller: 'favouritesCtrl'
     });
 });

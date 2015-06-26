@@ -14,7 +14,6 @@ angular.module('thumbnailsDirective', [])
 				$scope.wallpapers = wallgigAPI.searchResults;
 			} else if ($scope.context === "favourites") {
 				$scope.wallpapers = favouritesAPI.favourites;
-				favouritesAPI.getFavourites();
 			}
 
 			var getActiveThumb = function(event) {

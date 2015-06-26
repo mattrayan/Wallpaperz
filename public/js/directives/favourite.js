@@ -8,8 +8,19 @@ angular.module('favouriteDirective', [])
 		},
 		controller: ['$scope', 'favouritesAPI', function($scope, favouritesAPI) {
 			$scope.inFavourites = false;
-			if (favouritesAPI.findWallpaper($scope.id).length !== 0) {
-				$scope.inFavourites = true;
+
+			$scope.checkInFavourites = function() {
+				if (favouritesAPI.findWallpaper($scope.id).length !== 0) {
+					$scope.inFavourites = true;
+				}
+			};
+
+			if (favouritesAPI.favourites.length === 0) {
+				favouritesAPI.getFavourites().then(function() {
+					$scope.checkInFavourites();
+				});
+			} else {
+				$scope.checkInFavourites();
 			}
 		}]
 	};

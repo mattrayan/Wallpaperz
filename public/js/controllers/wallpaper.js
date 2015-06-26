@@ -1,5 +1,5 @@
 angular.module('wallpaper', [])
-.controller('wallpaperCtrl', ['$scope', '$location', 'favouritesAPI', 'wallgigAPI', function($scope, $location, favouritesAPI, wallgigAPI) {
+.controller('wallpaperCtrl', ['$scope', '$location', '$window', 'favouritesAPI', 'wallgigAPI', function($scope, $location, $window, favouritesAPI, wallgigAPI) {
 	$scope.id = $location.path().split("/")[2];
 	var thumbnail;
 	$scope.image = {};
@@ -11,5 +11,9 @@ angular.module('wallpaper', [])
 
 	$scope.toggleFavourites = function() {
 		favouritesAPI.toggleFavourite($scope.id, thumbnail);
+	};
+
+	$scope.openImage = function() {
+		$window.open($scope.image.wallpaper.image.original.url);
 	};
 }]);

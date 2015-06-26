@@ -2,21 +2,26 @@ angular.module('favouritesService', [])
 .factory('favouritesAPI', ['$http', '$q', function($http, $q) {
 	return {
 		favourites: [],
-		
+
 		findWallpaper: function(id) {
 			return _.where(this.favourites, {id: id});	
 		},
 
 		getFavourites: function() {
+			var deferred = $q.defer();
 			var _this = this;
 
 			$http.get('/api/favourites')
 			.success(function(data) {
 				angular.copy(data, _this.favourites);
+				deferred.resolve();
 			})
 			.error(function(err) {
 				console.log(err);
+				deferred.reject();
 			});
+
+			return deferred.promise;
 		},
 
 		toggleFavourite: function(id, url) {
