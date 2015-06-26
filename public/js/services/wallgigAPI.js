@@ -8,26 +8,33 @@ angular.module('wallgigService', [])
 	};
 
 	return {
-		wallpapers: [],
 		searchResults: [],
 
 		fetchWallpapers: function(page) {
+			var deferred = $q.defer();
 			var pageNum = page || 1;
 			var _this = this;
 
 			$http.get('https://wallgig-v1.p.mashape.com/wallpapers?order=latest&page=' + pageNum + '&purity[]=sfw', config)
 			.success(function(data) {
-				angular.copy(data.wallpapers, _this.wallpapers);
+				deferred.resolve(data.wallpapers);
 			});
+
+			return deferred.promise;
 		},
 
-		searchWallpapers: function(query, page) {
+		searchWallpapers: function(query, reset, page) {
 			var pageNum = page || 1;
 			var _this = this;
 
 			$http.get('https://wallgig-v1.p.mashape.com/wallpapers?order=latest&page=' + pageNum + '&purity[]=sfw&q=' + query, config)
 			.success(function(data) {
-				angular.copy(data.wallpapers, _this.searchResults);
+				if (reset) {
+					angular.copy(data.wallpapers, _this.searchResults);
+				} else {
+					var tempArray = _this.searchResults.concat(data.wallpapers);
+					angular.copy(tempArray, _this.searchResults);
+				}
 			});
 		},
 

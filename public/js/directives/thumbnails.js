@@ -1,4 +1,4 @@
-angular.module('thumbnailsDirective', [])
+angular.module('thumbnailsDirective', ['infinite-scroll'])
 .directive('thumbnails', function() {
 	return {
 		restrict: 'E',
@@ -8,8 +8,10 @@ angular.module('thumbnailsDirective', [])
 		},
 		controller: ['$scope', 'favouritesAPI', 'wallgigAPI', function($scope, favouritesAPI, wallgigAPI) {
 			if ($scope.context === "all") {
-				$scope.wallpapers = wallgigAPI.wallpapers;
-				wallgigAPI.fetchWallpapers();
+				$scope.$parent.page = 1;
+				wallgigAPI.fetchWallpapers().then(function(wallpapers) {
+					$scope.wallpapers = wallpapers;
+				});
 			} else if ($scope.context === "search") {
 				$scope.wallpapers = wallgigAPI.searchResults;
 			} else if ($scope.context === "favourites") {
@@ -30,6 +32,19 @@ angular.module('thumbnailsDirective', [])
 
 			var toggleFavourites = function(id, url) {
 				favouritesAPI.toggleFavourite(id, url);
+			};
+
+			$scope.loadMore = function() {
+				if ($scope.wallpapers) {
+					$scope.$parent.page++;
+					if ($scope.context === "all") {
+						wallgigAPI.fetchWallpapers($scope.$parent.page).then(function(wallpapers) {
+							$scope.wallpapers = $scope.wallpapers.concat(wallpapers);
+						});
+					} else if ($scope.context === "search") {
+						wallgigAPI.searchWallpapers($scope.$parent.$parent.searchForm.query, false, $scope.$parent.page);
+					}
+				}
 			};
 
 			$scope.addActiveControls = function(event) {
