@@ -18,6 +18,7 @@
 }
 
 .right {
+	width: 170px;
 	margin-left: 30px;
 }
 
@@ -44,4 +45,14 @@
 
 .right .tags {
 	color: #FFFFFF;
+	border: 1px solid #A31919;
+	background-color: #A31919;
+	border-radius: 5px;
+	padding: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	display: inline-block;
+	margin-top: 3px;
+	margin-right: 3px;
+	cursor: pointer;
 }

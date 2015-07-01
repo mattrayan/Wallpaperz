@@ -1,6 +1,6 @@
 angular.module('wallpaperz', ['ngRoute', 'favouritesService', 'wallgigService', 'favourites', 'wallpaper', 'favouriteDirective', 'headerDirective', 'thumbnailsDirective'])
 
-.controller('wallpaperzCtrl', ['$scope', '$location', function($scope, $location) {
+.controller('wallpaperzCtrl', ['$scope', '$location', 'wallgigAPI', function($scope, $location, wallgigAPI) {
     $scope.searchForm = {};
 
     $scope.page = 1;
@@ -8,6 +8,13 @@ angular.module('wallpaperz', ['ngRoute', 'favouritesService', 'wallgigService', 
     $scope.go = function(path) {
         $location.path(path);
     };
+
+    $scope.search = function() {
+		wallgigAPI.searchWallpapers($scope.searchForm.query, true);
+		$scope.page = 1;
+		$scope.go('/search');
+	};
+
 }])
 
 .config(function($routeProvider) {
