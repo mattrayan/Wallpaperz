@@ -16,4 +16,9 @@ angular.module('wallpaper', [])
 	$scope.openImage = function() {
 		$window.open($scope.image.wallpaper.image.original.url);
 	};
+
+	$scope.searchTag = function(tag) {
+		$scope.$parent.searchForm.query = tag;
+		$scope.search();
+	};
 }]);

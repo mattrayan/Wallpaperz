@@ -10,8 +10,8 @@
 		
 		<div class="date">Created:<br/>{{image.wallpaper.created_at | date:'medium'}}</div>
 		<div class="tags-section">
-			<span class="tags-title">Tags:</span>
-			<div class="tags" ng-repeat="tag in image.wallpaper.tags">{{tag.name}}</div>
-		</div>	
+			<div class="tags-title">Tags:</div>
+			<div class="tags" ng-repeat="tag in image.wallpaper.tags" ng-click="searchTag(tag.name)">{{tag.name}}</div>
+		</div>
 	</div>
 </div>
