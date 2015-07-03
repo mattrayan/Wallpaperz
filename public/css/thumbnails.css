@@ -16,6 +16,12 @@
 	justify-content: center;
 }
 
+.no-wallpapers {
+	font-size: xx-large;
+	color: #FFFFFF;
+	margin-top: 150px;
+}
+
 .activeItem {
 	border: 1px solid #FFFFFF;
 }

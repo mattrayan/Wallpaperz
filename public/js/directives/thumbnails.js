@@ -1,4 +1,4 @@
-angular.module('thumbnailsDirective', ['infinite-scroll'])
+angular.module('thumbnailsDirective', ['infinite-scroll', 'reverseFilter'])
 .directive('thumbnails', function() {
 	return {
 		restrict: 'E',

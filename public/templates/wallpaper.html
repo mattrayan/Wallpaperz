@@ -8,7 +8,8 @@
 	<div class="right">
 		<favourite ng-click="toggleFavourites()" id="{{id}}"></favourite>
 		
-		<div class="date">Created:<br/>{{image.wallpaper.created_at | date:'medium'}}</div>
+		<div class="date"><i class="fa fa-calendar"></i>&nbsp;{{image.wallpaper.created_at | date:'medium'}}</div>
+		<div class="size"><i class="fa fa-image"></i>&nbsp;{{image.wallpaper.image.original.width}} x {{image.wallpaper.image.original.height}}</div>
 		<div class="tags-section">
 			<div class="tags-title">Tags:</div>
 			<div class="tags" ng-repeat="tag in image.wallpaper.tags" ng-click="searchTag(tag.name)">{{tag.name}}</div>

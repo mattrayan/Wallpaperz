@@ -5,9 +5,15 @@
 </div>
 
 <div class="thumbnail-container text-center" ng-show="context === 'favourites'">
-	<div class="thumbnail-image" data-id="{{wallpaper.id}}" data-url="{{wallpaper.url}}" style="background-image: url({{wallpaper.url}});" ng-repeat="wallpaper in wallpapers" ng-mouseover="addActiveControls($event)" ng-mouseleave="removeActiveControls($event)" ng-click="clickWallpaper($event)">
+	<div class="thumbnail-image" data-id="{{wallpaper.id}}" data-url="{{wallpaper.url}}" style="background-image: url({{wallpaper.url}});" ng-repeat="wallpaper in wallpapers | reverse" ng-mouseover="addActiveControls($event)" ng-mouseleave="removeActiveControls($event)" ng-click="clickWallpaper($event)">
 		<favourite id="{{wallpaper.id}}"></favourite>
 	</div>
+</div>
+
+<div class="no-wallpapers text-center" ng-show="wallpapers.length === 0">
+	<div ng-show="context === 'all'">Sorry, there are no wallpapers to show!</div>
+	<div ng-show="context === 'search'">Sorry, your search didn't return any results!</div>
+	<div ng-show="context === 'favourites'">You have not favourited any wallpapers!</div>
 </div>
 
 <div infinite-scroll="loadMore()" infinite-scroll-distance="0"></div>
