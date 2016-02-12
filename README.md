@@ -14,3 +14,9 @@ A wallpapers app using AngularJS and Node.js
 - Node.js
 - Express.js
 - MongoDB and Mongoose
+
+## How to Run:
+- npm install
+- Start mongod
+- npm start
+- Visit localhost:8080
